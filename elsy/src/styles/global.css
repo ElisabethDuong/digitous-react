@@ -1,0 +1,15 @@
+.box:nth-child(2n) { 
+    background-color: #cccccc;
+}
+/* 2n : éléments pairs */
+
+.box:nth-child(2n+1) {
+    background-color: #aaaaaa;
+}
+/* 2n+1 : éléments impairs */
+
+.box {
+    height: 190px;
+    padding: 8px;
+    text-align: center;
+}
