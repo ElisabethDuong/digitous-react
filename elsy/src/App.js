@@ -27,28 +27,28 @@ class App extends React.Component {
         <div className="row">
 
           {/* Water */}
-          <Box icon="local_drink"
-            color="#3A85FF"
+          <Box icon={"local_drink"}
+            color={"#3A85FF"}
             value={1.5}
-            unit="L" />
+            unit={"L"} />
 
           {/* Steps */}
-          <Box icon="directions_walk"
-            color="black"
+          <Box icon={"directions_walk"}
+            color={"black"}
             value={3000}
-            unit="steps" />
+            unit={"steps"} />
 
           {/* Heart */}
-          <Box icon="favorite"
-            color="red"
+          <Box icon={"favorite"}
+            color={"red"}
             value={120}
-            unit="bpm" />
+            unit={"bpm"} />
 
           {/* Temperature */}
-          <Box icon="wb_sunny"
-            color="yellow"
+          <Box icon={"wb_sunny"}
+            color={"yellow"}
             value={-10}
-            unit="°C" />
+            unit={"°C"} />
 
           {/* <p>Heart: {heartMin}</p>
           <p>Temperature: {tempMin}</p>

@@ -1,12 +1,12 @@
 .box:nth-child(2n) { 
     background-color: #cccccc;
 }
-/* 2n : éléments pairs */
+/* 2n/even : éléments pairs */
 
 .box:nth-child(2n+1) {
     background-color: #aaaaaa;
 }
-/* 2n+1 : éléments impairs */
+/* 2n+1/odd : éléments impairs */
 
 .box {
     height: 190px;
