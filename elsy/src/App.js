@@ -11,14 +11,85 @@ const stepsMin = 0;
 const stepsMax = 50000;
 
 class App extends React.Component {
+  water = {
+    icon: "local_drink",
+    color: "#3A85FF",
+    value: 1.5,
+    unit: "L"
+  };
+
+  steps = {
+    icon: "directions_walk",
+    color: "black",
+    value: 3000,
+    unit: "steps",
+    min: stepsMin,
+    max: stepsMax,
+  };
+
+  heart = {
+    icon: "favorite",
+    color: "red",
+    value: 120,
+    unit: "bpm",
+    min: heartMin,
+    max: heartMax
+  };
+
+  temperature = {
+    icon: "wb_sunny",
+    color: "yellow",
+    value: -10,
+    unit: "°C",
+    min: tempMin,
+    max: tempMax
+  };
+
   constructor(props) {
     super(props);
     this.state = {
       water: 0,
       heart: 120,
       temperature: -10,
-      steps: 3000
+      steps: 3000,
+      onHeartChange: (value) => {
+        this.setState({ heart: value.target.value });
+        // définit la nouvelle valeur en fonction du curseur
+        this.calculateWater()
+      },
+      onStepsChange: (value) => {
+        this.setState({ steps: value.target.value });
+        this.calculateWater()
+      },
+      onTemperatureChange: (value) => {
+        this.setState({ temperature: value.target.value });
+        this.calculateWater()
+      }
     };
+  }
+
+  calculateWater = () => {
+    let totalWater = 1.5;
+    let tempWater = 0;
+    let heartWater = 0;
+    let stepsWater = 0;
+    let totalWaterTHS = 0;
+    // quantité d'eau supplémentaire en fonction de temperature, heart, steps
+
+    if (this.state.temperature > 20) {
+      tempWater = (this.state.temperature - 20) * 0.02;
+      totalWaterTHS += tempWater;
+    }
+    if (this.state.heart > 120) {
+      heartWater = (this.state.heart - 120) * 0.0008;
+      totalWaterTHS += heartWater;
+    }
+    if (this.state.steps > 10000) {
+      stepsWater = (this.state.steps - 10000) * 0.00002;
+      totalWaterTHS += stepsWater;
+    }
+    totalWater += totalWaterTHS;
+    this.setState({ water: totalWater.toFixed(2) });
   }
 
   render() {
@@ -27,32 +98,24 @@ class App extends React.Component {
         <div className="row">
 
           {/* Water */}
-          <Box icon={"local_drink"}
-            color={"#3A85FF"}
-            value={1.5}
-            unit={"L"} />
+          <Box {...this.water}
+            value={this.state.water} />
+          {/* on utilise this.state.water car on veut afficher la valeur recalculée de water qui se trouve dans le state */}
 
           {/* Steps */}
-          <Box icon={"directions_walk"}
-            color={"black"}
-            value={3000}
-            unit={"steps"} />
+          <Box {...this.steps}
+            onChange={this.state.onStepsChange}
+            value={this.state.steps} />
 
           {/* Heart */}
-          <Box icon={"favorite"}
-            color={"red"}
-            value={120}
-            unit={"bpm"} />
+          <Box {...this.heart}
+            onChange={this.state.onHeartChange}
+            value={this.state.heart} />
 
           {/* Temperature */}
-          <Box icon={"wb_sunny"}
-            color={"yellow"}
-            value={-10}
-            unit={"°C"} />
-
-          {/* <p>Heart: {heartMin}</p>
-          <p>Temperature: {tempMin}</p>
-          <p>Steps: {stepsMin}</p> */}
+          <Box {...this.temperature}
+            onChange={this.state.onTemperatureChange}
+            value={this.state.temperature} />
 
         </div>
       </div>
