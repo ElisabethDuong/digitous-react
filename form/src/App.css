@@ -1,0 +1,27 @@
+h1 {
+  margin: 50px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.input-block {
+  margin: 25px 0;
+}
+
+input {
+  margin: 10px 0;
+}
+
+.submit-msg {
+  border: 1px solid black;
+  border-radius: 10px;
+  background-color: #e6e6ee;
+  height: 200px;
+  margin: 150px 50px;
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 2.5rem;
+  text-align: center;
+}

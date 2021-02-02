@@ -117,6 +117,14 @@ class App extends React.Component {
             onChange={this.state.onTemperatureChange}
             value={this.state.temperature} />
 
+          {/* <Box 
+            icon={"wb_sunny"} 
+            color={"yellow"} 
+            value={-10} 
+            unit={"°C"}
+            min={tempMin}
+            max={tempMax} /> */}
+
         </div>
       </div>
     );
