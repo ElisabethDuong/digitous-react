@@ -1,11 +1,14 @@
 import React from "react";
 
-class PAy extends React.Component {
+class Pay extends React.Component {
     render() {
         return (
             <div>
-                <Pay />
+                <h1>Pay</h1>
+                
             </div>
         )
     }
 }
+
+export default Pay;

@@ -4,7 +4,7 @@ class Add extends React.Component {
     render() {
         return (
             <div>
-                <Add />
+                <h1>Add</h1>
             </div>
         )
     }
