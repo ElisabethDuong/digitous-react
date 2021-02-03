@@ -5,7 +5,6 @@ class List extends React.Component {
         return (
             <div>
                 <h1>List</h1>
-
             </div>
         )
     }

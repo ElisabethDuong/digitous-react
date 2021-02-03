@@ -5,7 +5,6 @@ class Pay extends React.Component {
         return (
             <div>
                 <h1>Pay</h1>
-                
             </div>
         )
     }
