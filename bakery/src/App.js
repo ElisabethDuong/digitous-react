@@ -18,6 +18,7 @@ class App extends React.Component {
     this.selectList = this.selectList.bind(this);
     this.selectPay = this.selectPay.bind(this);
     this.checkTab = this.checkTab.bind(this);
+    this.add = this.add.bind(this);
     this.renderContent = this.renderContent.bind(this);
   }
 
@@ -47,11 +48,26 @@ class App extends React.Component {
     }
   }
 
+  add(name, price) {
+    console.log("[APP] name", name);
+    console.log("[APP] price", price);
+    const obj = {
+      name: name,
+      price: price
+    }
+    const newList = this.state.items;
+    newList.push(obj)
+
+    this.setState({
+      items: newList
+    })
+  }
+
   renderContent() {
     if (this.state.activeTab === "add") {
-      return <Add></Add>
+      return <Add addItem={this.add}></Add>
     } else if (this.state.activeTab === "list") {
-      return <List></List>
+      return <List listItems={this.state.items}></List>
     } else if (this.state.activeTab === "pay") {
       return <Pay></Pay>
     }
