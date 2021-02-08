@@ -1,10 +1,10 @@
-import React from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
-import Button from "./components/Button";
-import Add from "./components/Add";
-import List from "./components/List";
-import Pay from "./components/Pay";
 import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import React from "react";
+import Button from "./components/Button/Button";
+import Add from "./components/Add/Add";
+import List from "./components/List/List";
+import Pay from "./components/Pay/Pay";
 
 class App extends React.Component {
 
@@ -17,79 +17,60 @@ class App extends React.Component {
     this.selectAdd = this.selectAdd.bind(this);
     this.selectList = this.selectList.bind(this);
     this.selectPay = this.selectPay.bind(this);
-    this.checkTab = this.checkTab.bind(this);
     this.add = this.add.bind(this);
-    this.renderContent = this.renderContent.bind(this);
   }
 
   selectAdd(e) {
+    console.log(e);
     this.setState({
-      activeTab: "add"
-    })
+      activeTab: "add",
+    });
   }
 
   selectList(e) {
     this.setState({
-      activeTab: "list"
-    })
+      activeTab: "list",
+    });
   }
 
   selectPay(e) {
     this.setState({
-      activeTab: "pay"
-    })
-  }
-
-  checkTab(tabToCheck) {
-    if (this.state.activeTab === tabToCheck) {
-      return true
-    } else {
-      return false
-    }
+      activeTab: "pay",
+    });
   }
 
   add(name, price) {
-    console.log("[APP] name", name);
-    console.log("[APP] price", price);
     const obj = {
       name: name,
-      price: price
-    }
+      price: parseInt(price),
+    };
     const newList = this.state.items;
-    newList.push(obj)
-
+    newList.push(obj);
     this.setState({
-      items: newList
-    })
+      items: newList,
+    });
   }
 
-  renderContent() {
-    if (this.state.activeTab === "add") {
-      return <Add addItem={this.add}></Add>
-    } else if (this.state.activeTab === "list") {
-      return <List listItems={this.state.items}></List>
-    } else if (this.state.activeTab === "pay") {
-      return <Pay></Pay>
+  renderContent = () => {
+    switch (this.state.activeTab) {
+      case "add":
+        return <Add addItem={this.add}></Add>;
+      case "list":
+        return <List listItems={this.state.items}></List>;
+      case "pay":
+        return <Pay items={this.state.items}></Pay>;
     }
-  }
+  };
 
-  // Méthode avec switch
-
-  // renderContent() {
-  //   switch (this.state.activeTab) {
-  //     case "add":
-  //       <Add></Add>;
-  //       break;
-  //     case "list":
-  //       <List></List>;
-  //       break;
-  //     case "pay":
-  //       <Pay></Pay>;
-  //       break;
-  //     default:
-  //       return
+  // renderContent() => {
+  //   if (this.state.activeTab === "add") {
+  //     return <Add addItem={this.add}></Add>
+  //   } else if (this.state.activeTab === "list") {
+  //     return <List listItems={this.state.items}></List>
+  //   } else if (this.state.activeTab === "pay") {
+  //     return <Pay items={this.state.items}></Pay>
   //   }
-  // }
+  // };
 
   render() {
     return (
@@ -108,9 +89,6 @@ class App extends React.Component {
 export default App;
 
 
-// <Button onClick={this.selectAdd} isSelected={this.checkTab}>Add<Button>
-// <Button onClick={this.selectList} isSelected={this.checkTab}>List</Button>
-// <Button onClick={this.selectPay} isSelected={this.checkTab}>Pay</Button>
 
 
 // la props children ne sera utilisée que pour le bouton
